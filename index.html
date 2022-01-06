@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger Stats Tool</title>
+
+    <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="./js/index.js"></script>
+</head>
+
+<body>
+    <div class="card upload-container">
+        <div class="upload-area">
+            <input type="file" id="upload-files" class="upload-files" multiple>
+            <div class="decorations">
+                <!-- icon taken from https://css-tricks.com/examples/DragAndDropFileUploading -->
+                <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="50" height="43" viewBox="0 0 50 43"><path d="M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z" /></svg>
+                <span class="upload-label">
+                    <strong>Choose files</strong> or drag them here
+                </span>
+            </div>
+        </div>
+        <button id="process-files" class="load-button">Process files</button>
+    </div>
+    <div class="card progress-container hidden">
+        <h3>Processing files...</h3>
+        <div class="progress">
+            <div class="progressbar"></div>
+            <span id="progress"></span>
+        </div>
+    </div>
+    <main>
+        <div class="results-container hidden">
+            <section class="head-title">
+                <h2>Conversation stats for</h2>
+                <h1 id="convo-title"></h1>
+            </section>
+            <section class="general">
+                <div class="card userlist">
+                    <hr>
+                    <h4>Users</h4>
+                </div>
+                <div class="info-container">
+                    <div class="card square-card">
+                        <span class="title">Total</span>
+                        <img src="./img/message.svg">
+                        <span id="general-total">0</span>
+                    </div>
+                    <div class="card square-card" id="card-first-message">
+                        <span class="title">First&nbsp;message</span>
+                        <img src="./img/history.svg">
+                        <div>
+                            <span id="general-first-date">0</span>
+                            <span id="general-first-hour">0</span>
+                        </div>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Images</span>
+                        <img src="./img/image.svg">
+                        <span id="general-images">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Videos</span>
+                        <img src="./img/video.svg">
+                        <span id="general-videos">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Audio&nbsp;Files</span>
+                        <img src="./img/audio.svg">
+                        <span id="general-audio">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Stickers</span>
+                        <img src="./img/sticker.svg">
+                        <span id="general-stickers">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Reactions</span>
+                        <img src="./img/heart.png">
+                        <span id="general-reactions">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Unsent</span>
+                        <img src="./img/deleted.svg">
+                        <span id="general-unsent">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Mentions</span>
+                        <img src="./img/mention.svg">
+                        <span id="general-mentions">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Links</span>
+                        <img src="./img/link.svg">
+                        <span id="general-links">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">GIFs</span>
+                        <img src="./img/gif.svg" class="img-gif">
+                        <span id="general-gifs">0</span>
+                    </div>
+                    <div class="card square-card">
+                        <span class="title">Files</span>
+                        <img src="./img/file.svg">
+                        <span id="general-files">0</span>
+                    </div>
+                    <div class="card wide-card top-reactions">
+                        <h3>Top reactions</h3>
+                        <div class="list-container" id="top-reactions-container">
+                        </div>
+                    </div>
+                    <div class="card wide-card top-characters">
+                        <h3>Top characters</h3>
+                        <div class="list-container" id="top-characters-container">
+                        </div>
+                    </div>
+                </div>
+                <div class="card ranking-container">
+                    <h3>Message ranking</h3>
+                    <div id="ranking"></div>
+                </div>
+            </section>
+            <hr>
+            <section class="activity">
+                <div class="card graph-card" id="month-container">
+                    <h3>Activity by month</h3>
+                </div>
+                <div class="card calendar-card" id="calendar-container">
+                    <img src="./img/calendar.svg">
+                    <h3 id="calendar-title"></h3>
+                    <div class="calendar">
+                        <div class="weekdays">
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+                            <span>Sun</span>
+                        </div>
+                        <div id="calendar-box"></div>
+                    </div>
+                </div>
+                <div class="card" id="top-messages-container">
+                    <img src="./img/graphup.svg" class="symbol">
+                    <h3>Most messages in a day</h3>
+                    <div class="list-container">
+                        <div class="list-row">
+                            <span id="top-messages-total1"></span>
+                            <span id="top-messages-date1"></span>
+                        </div>
+                        <div class="list-row">
+                            <span id="top-messages-total2"></span>
+                            <span id="top-messages-date2"></span>
+                        </div>
+                        <div class="list-row">
+                            <span id="top-messages-total3"></span>
+                            <span id="top-messages-date3"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" id="avg-messages-container">
+                    <h3>Average messages per day</h3>
+                    <div class="list-container">
+                        <div class="list-row">
+                            <h4 class="title">In total</h4>
+                            <span id="avg-messages-total"></span>
+                        </div>
+                        <div class="list-row">
+                            <h4 class="title">Best month</h4>
+                            <span id="avg-messages-best"></span>
+                            <span id="avg-messages-best-date"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" id="avg-chars-container">
+                    <span class="symbol text-symbol">a</span>
+                    <h3>Average characters per message</h3>
+                    <span id="avg-chars"></span>
+                </div>
+                <div class="card graph-card" id="hour-container">
+                    <h3>Activity by hour</h3>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

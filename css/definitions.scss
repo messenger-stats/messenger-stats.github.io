@@ -1,0 +1,23 @@
+$bg: #e0e0e0;
+$bg2: white;
+$main-100: #b1e0dd;
+$main-200: #7dcdc7;
+$main-300: #45b9b0;
+$main-400: #0da99f;
+$main-500: #00998d;
+$main-600: #008c7f;
+$main-700: #007c6f;
+$main-800: #006c60;
+$main-900: #005043;
+$sec: #a90d17;
+
+$gap: 1.5rem;
+@mixin card-shadow {
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 20%),
+        0px 1px 1px 0px rgba(0, 0, 0, 14%),
+        0px 1px 3px 0px rgba(0, 0, 0, 12%);
+}
+@font-face {
+    font-family: Emojis;
+    src: url(../img/OpenSansEmoji.ttf);
+}
