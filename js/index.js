@@ -642,7 +642,7 @@ function generateInfoDisplays() {
                 if (dayObj.blank) continue;
                 mostMessages.push({
                     value: dayObj.total,
-                    date: `<span class="date">${MONTH_NAMES_SHORT[monthNum]} ${dayNum+1}</span><br/><span class="year">${year}</span>`,
+                    date: `<span class="date">${MONTH_NAMES_SHORT[monthNum]} ${Number(dayNum)+1}</span><br/><span class="year">${year}</span>`,
                 });
             }
         }
