@@ -230,6 +230,7 @@ button {
                 height: 2rem;
                 transition: background-color 0.2s ease;
                 cursor: pointer;
+                border-radius: 4px;
 
                 img {
                     width: 2rem;
@@ -244,7 +245,7 @@ button {
             .user-button:hover, .user-button:focus {
                 background: rgba($bg, 0.5);
             }
-            .user-button:active {
+            .user-button:active, .user-button.active {
                 background: $bg;
             }
         }

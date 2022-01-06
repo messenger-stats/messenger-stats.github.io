@@ -692,6 +692,10 @@ function generateUserButton(user, total = false) {
         <span>${username}</span>
     </span>`);
     buttonEl.click(function() {
+        //button highlight
+        $(this).parent().children().removeClass('active');
+        $(this).addClass('active');
+        //stats
         $('#general-total').html(addThousandSep(getData(stats.total)));
         $('#general-first-date').html(formatDate(getData(stats.first_message)));
         $('#general-first-hour').html(formatHour(getData(stats.first_message)));

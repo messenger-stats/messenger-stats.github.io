@@ -256,6 +256,7 @@ button {
   height: 2rem;
   transition: background-color 0.2s ease;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .results-container section.general .userlist .user-button img {
@@ -273,7 +274,7 @@ button {
   background: rgba(224, 224, 224, 0.5);
 }
 
-.results-container section.general .userlist .user-button:active {
+.results-container section.general .userlist .user-button:active, .results-container section.general .userlist .user-button.active {
   background: #e0e0e0;
 }
 
